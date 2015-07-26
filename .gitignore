@@ -1,3 +1,4 @@
+.cache/*
 *.class
 *.o
 *.pyc
