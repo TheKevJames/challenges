@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-"""
+"""polyeuler
+
 Usage:
 polyeuler.py -h | --help
 polyeuler.py [--lang=LANG] [--prob=PROB] [--tries=TRIES]
@@ -24,12 +25,10 @@ class Lang(object):
         self.to_built = to_built
         self.runner = runner
 
-
     @staticmethod
     def parse_time(t):
         m, s = re.match(r'^([\\.\d]+)m([\\.\d]+)s$', t).groups()
         return 60 * float(m) + float(s)
-
 
     def run(self, filename, times):
         command = '%(run)s; time for i in {1..%(n)s}; do %(run)s; done' % {
@@ -67,7 +66,6 @@ class Langs(object):
 
     def all(self):
         return sorted(self.langs.keys())
-
 
     def build(self):
         self.langs['c++'] = Lang('cpp', lambda x: x[:-3] + 'o')
@@ -108,7 +106,6 @@ class PolyEuler(object):
         self.problems = [int(problem)] if problem else self.answers.keys()
         self.tries = tries
 
-
     @staticmethod
     def colorize(wrong):
         if not wrong:
@@ -117,7 +114,6 @@ class PolyEuler(object):
         else:
             return wrong
             # return '\033[91m%s\033[0m' % wrong
-
 
     def time(self, filename, language, problem):
         out, time = self.langs[language].run(filename, self.tries)
