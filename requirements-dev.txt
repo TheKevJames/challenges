@@ -1,7 +1,7 @@
-cpplint==0.0.5
-execnet==1.4.0
-pep8==1.6.2
-py==1.4.30
-pytest==2.7.2
-pytest-cache==1.0
-pytest-pep8==1.0.6
+cpplint
+execnet
+pep8
+py
+pytest
+pytest-cache
+pytest-pep8
