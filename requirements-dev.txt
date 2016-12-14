@@ -1,7 +1,3 @@
 cpplint
-execnet
-pep8
-py
 pytest
-pytest-cache
 pytest-pep8
