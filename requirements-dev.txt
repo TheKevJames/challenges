@@ -4,4 +4,4 @@ pep8
 py
 pytest
 pytest-cache
-pytest-pep8
+pytest-pep8==1.0.6
