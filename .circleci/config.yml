@@ -1,0 +1,22 @@
+version: 2
+
+jobs:
+  polyeuler:
+    docker:
+      - image: python:3.6.2
+    steps:
+      - checkout
+      - run: python -m pip install -r polyeuler/requirements.txt
+      - run: python -m pip install -r polyeuler/requirements-dev.txt
+      - run: cpplint polyeuler/*/*.cpp
+      - run:
+          name: py.test
+          command: |
+            cd polyeuler
+            py.test
+
+workflows:
+  version: 2
+  run-jobs:
+    jobs:
+      - polyeuler
