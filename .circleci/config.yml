@@ -6,7 +6,7 @@ jobs:
       - image: julia:0.6.1
     steps:
       - checkout
-      - run: julia 1.jl
+      - run: julia advent-2017/1.jl
 
   polyeuler:
     docker:
