@@ -4,15 +4,16 @@ function checksum(data::Array)
 end
 
 function divisor(data::Array)
-    for (i, a) in enumerate(data)
-        for (j, b) in enumerate(data)
-            if i == j
-                continue
-            end
+    combs = [repmat(data, 1, length(data))'[:] repmat(data, length(data), 1)[:]]
 
-            if a % b == 0
-                return a / b
-            end
+    # Why can't I apply `Iterators.filter(..., combs)` ?
+    long = reshape(combs, (512, 1))
+    combs_as_tuple_array = zip(long[1:div(length(long), 2)], long[div(length(long), 2) + 1:end])
+    # Is this even a halfway-reasonable conversion?
+
+    for (i, j) in Iterators.filter(x -> x[1] != x[2], combs_as_tuple_array)
+        if i % j == 0
+            return i / j
         end
     end
 end
