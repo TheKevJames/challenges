@@ -1,6 +1,13 @@
 version: 2
 
 jobs:
+  advent-2017:
+    docker:
+      - image: julia:0.6.1
+    steps:
+      - checkout
+      - run: julia 1.jl
+
   polyeuler:
     docker:
       - image: python:3.6.2
@@ -19,4 +26,5 @@ workflows:
   version: 2
   run-jobs:
     jobs:
+      - advent-2017
       - polyeuler
