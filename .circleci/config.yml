@@ -7,6 +7,7 @@ jobs:
     steps:
       - checkout
       - run: julia advent-2017/1.jl
+      - run: julia advent-2017/2.jl
 
   polyeuler:
     docker:
