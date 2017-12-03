@@ -6,50 +6,48 @@ function get_distance(n::Integer)
 end
 
 function get_spiral_value_greater_than(target::Integer)
-    m = 10
-    h = 2 * m - 1
-    matrix = fill(0, (h, h))
-    matrix[m, m] = 1
+    max_rows = 10
+    height = 2 * max_rows - 1
+    matrix = fill(0, (height, height))
+    matrix[max_rows, max_rows] = 1
     T = [[1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1]]
 
-    for n in 1:((h - 2) ^ 2 - 1)
-        g = floor(sqrt(n))
-        r = div((g + g % 2), 2)
-        q = 4 * r ^ 2
-        d = n - q
-        if (n <= q - 2 * r)
-            j = d + 3 * r
-            k = r
+    for n in 1:((height - 2) ^ 2 - 1)
+        a = floor(sqrt(n))
+        b = div((a + a % 2), 2)
+        c = 4 * b ^ 2
+        d = n - c
+
+        if (n <= c - 2 * b)
+            lindex = d + 3 * b
+            rindex = b
+        elseif (n <= c)
+            lindex = b
+            rindex = -d - b
+        elseif (n <= c + 2 * b)
+            lindex = b - d
+            rindex = -b
         else
-            if (n <= q)
-                j = r
-                k = -d -r
-            else
-                if (n <= q + 2 * r)
-                    j = r - d
-                    k = -r
-                else
-                    j = -r
-                    k = d - 3 * r
-                end
-            end
+            lindex = -b
+            rindex = d - 3 * b
         end
 
-        j = j + m
-        k = k + m
+        lindex = lindex + max_rows
+        rindex = rindex + max_rows
 
         value = 0
-        for c in 1:8
-            v = [j, k]
-            v += T[c]
+        for i in 1:8
+            v = T[i] + [lindex, rindex]
             value += matrix[convert(Int, v[1]), convert(Int, v[2])]
         end
 
-        matrix[convert(Int, j), convert(Int, k)] = value
+        matrix[convert(Int, lindex), convert(Int, rindex)] = value
         if (value > target)
             return value
         end
     end
+
+    println("no answer found, increase m")
 end
 
 data = 265149
