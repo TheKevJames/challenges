@@ -9,6 +9,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            julia -e 'Pkg.status()'
             cp advent-2017/REQUIRE ~/.julia/v0.6/REQUIRE
             julia -e 'Pkg.resolve()'
       - run: julia advent-2017/1.jl
