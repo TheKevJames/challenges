@@ -16,6 +16,7 @@ jobs:
       - run: julia advent-2017/2.jl
       - run: julia advent-2017/3.jl
       - run: julia advent-2017/4.jl
+      - run: julia advent-2017/5.jl
 
   polyeuler:
     docker:
