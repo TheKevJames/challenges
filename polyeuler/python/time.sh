@@ -2,7 +2,7 @@
 set -euo pipefail
 
 for file in $(ls *.py); do
-    echo -n "Problem ${file}: "
+    echo -n "Problem ${file/.py/}: "
 
     # realtime, but only once
     # sudo -E chrt -f 99 /usr/bin/time --verbose ./${file} |& awk '/User time/ {print $4}'

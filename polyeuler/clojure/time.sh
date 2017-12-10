@@ -2,7 +2,7 @@
 set -euo pipefail
 
 for file in $(ls *.clj); do
-    echo -n "Problem ${file}: "
+    echo -n "Problem ${file/.clj/}: "
 
     # realtime, but only once
     # sudo -E chrt -f 99 /usr/bin/time --verbose clojure ${file} |& awk '/User time/ {print $4}'

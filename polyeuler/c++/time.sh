@@ -2,7 +2,7 @@
 set -euo pipefail
 
 for file in $(ls *.cpp); do
-    echo -n "Problem ${file}: "
+    echo -n "Problem ${file/.cpp/}: "
 
     clang++ -O3 ${file} -o compiled.exe
 

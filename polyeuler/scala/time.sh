@@ -2,7 +2,7 @@
 set -euo pipefail
 
 for file in $(ls *.scala); do
-    echo -n "Problem ${file}: "
+    echo -n "Problem ${file/.scala/}: "
 
     scalac ${file}
 
