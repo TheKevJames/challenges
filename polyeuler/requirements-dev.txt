@@ -1,3 +1,0 @@
-cpplint
-pytest
-pytest-pep8
