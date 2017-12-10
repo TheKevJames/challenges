@@ -6,3 +6,26 @@ why not?
 
 .. _Advent of Code: http://adventofcode.com/2017
 .. _Julia: https://julialang.org/
+
+Latest Timing Results
+---------------------
+
+Because who doesn't like evaluating performance?
+
+.. code-block:: bash
+
+    $ ./time.sh
+    Day 01.jl: 0.366042038
+    Day 02.jl: 0.862257224
+    Day 03.jl: 0.496869824
+    Day 04.jl: 0.910867074
+    Day 05.jl: 1.119347883
+    Day 06.jl: 1.783310568
+    Day 07.jl: 1.554397630
+    Day 08.jl: 0.753617088
+    Day 09.jl: 0.345111021
+    Day 10.jl: 0.631565781
+
+Hmm, I haven't been trying overly hard for speed here, but it's nice to see that
+the tagline which attracted me to try Julia (its like Python, but fast!) is
+decently accurate.
