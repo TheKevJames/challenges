@@ -8,11 +8,11 @@ type Node
 end
 
 function real_weight(node::Node)
-    weights = [real_weight(c) for c in node.children]
-    if isempty(weights)
+    if isempty(node.children)
         return node.weight
     end
 
+    weights = [real_weight(c) for c in node.children]
     total = sum(weights)
     if total != weights[1] * length(weights)
         counted = StatsBase.countmap(weights)
@@ -28,7 +28,7 @@ function real_weight(node::Node)
         exit()
     end
 
-    node.weight + sum(weights)
+    node.weight + total
 end
 
 function array_to_nodes(data::Array)

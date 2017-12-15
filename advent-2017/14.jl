@@ -28,6 +28,10 @@ function knot_hash(data::Array, lengths::Array; pos::Int64 = 1, skipper::Int64 =
     join([@sprintf("%02.x", i) for i in dense])
 end
 
+function to_binary(data::String)
+    join([bin(parse(Int, string(c), 16), 4) for c in data])
+end
+
 function knot_grid(data::String)
     grid = String[]
     for i in 0:127
@@ -37,10 +41,6 @@ function knot_grid(data::String)
         push!(grid, string(to_binary(knot)))
     end
     grid
-end
-
-function to_binary(data::String)
-    join([bin(parse(Int, string(c), 16), 4) for c in data])
 end
 
 function region(grid::Array, i::Int64, j::Int64)

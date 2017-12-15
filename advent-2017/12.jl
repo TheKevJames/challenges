@@ -25,7 +25,7 @@ function group(data::Dict, val::Int64; already::Set = Set())
 end
 
 function groups(data::Dict)
-    groups = 0
+    total = 0
     seen = Int64[]
     for i in  1:length(data)-1
         if i in seen
@@ -33,9 +33,9 @@ function groups(data::Dict)
         end
         g = group(data, i)
         seen = sort(vcat(seen, g))
-        groups += 1
+        total += 1
     end
-    groups
+    total
 end
 
 # https://adventofcode.com/2017/day/12/input

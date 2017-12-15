@@ -22,7 +22,7 @@ end
 
 function knot_hash(data::Array, lengths::Array; pos::Int64 = 1, skipper::Int64 = 1)
     for _ in 1:64
-        pos, skipper = hash(data, lengths2, pos=pos, skipper=skipper)
+        pos, skipper = hash(data, lengths, pos=pos, skipper=skipper)
     end
     dense = [reduce(xor, data[i:i+15]) for i in 1:16:256]
     join([@sprintf("%02.x", i) for i in dense])
