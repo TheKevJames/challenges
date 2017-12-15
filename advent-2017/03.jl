@@ -13,7 +13,7 @@ function get_spiral_value_greater_than(target::Integer)
     T = [[1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1]]
 
     for n in 1:((height - 2) ^ 2 - 1)
-        a = floor(sqrt(n))
+        a = convert(Int, floor(sqrt(n)))
         b = div((a + a % 2), 2)
         c = 4 * b ^ 2
         d = n - c
@@ -32,19 +32,15 @@ function get_spiral_value_greater_than(target::Integer)
             rindex = d - 3 * b
         end
 
-        lindex = lindex + max_rows
-        rindex = rindex + max_rows
+        lindex += max_rows
+        rindex += max_rows
 
-        value = 0
-        for i in 1:8
-            v = T[i] + [lindex, rindex]
-            value += matrix[convert(Int, v[1]), convert(Int, v[2])]
-        end
-
-        matrix[convert(Int, lindex), convert(Int, rindex)] = value
+        value = sum(matrix[T[i][1] + lindex, T[i][2] + rindex] for i in 1:8)
         if (value > target)
             return value
         end
+
+        matrix[lindex, rindex] = value
     end
 
     println("no answer found, increase m")

@@ -24,7 +24,7 @@ function reallocate_once(data::Array)
 end
 
 function reallocate(data::Array)
-    states = []
+    states = Set()
     for i in Iterators.countfrom(1)
         push!(states, data)
         data = reallocate_once(copy(data))

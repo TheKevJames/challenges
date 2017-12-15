@@ -1,7 +1,5 @@
 # https://adventofcode.com/2017/day/2
-function checksum(data::Array)
-    maximum(data) - minimum(data)
-end
+checksum(data::Array) = maximum(data) - minimum(data)
 
 function divisor(data::Array)
     combs = [repmat(data, 1, length(data))'[:] repmat(data, length(data), 1)[:]]

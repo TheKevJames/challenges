@@ -1,9 +1,7 @@
 # https://adventofcode.com/2017/day/4
 using StatsBase
 
-function anagram_union(data::Array)
-    union(StatsBase.countmap(collect(d)) for d in data)
-end
+anagram_union(data::Array) = union(StatsBase.countmap(collect(d)) for d in data)
 
 function valid(data::String, f)
     l = split(data)
