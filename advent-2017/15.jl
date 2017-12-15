@@ -1,7 +1,6 @@
 # https://adventofcode.com/2017/day/15
-function gen1(always::Bool)
-    # https://adventofcode.com/2017/day/15/input
-    v = 722
+# https://adventofcode.com/2017/day/15/input
+function gen1(; v::Int64 = 722, always::Bool = true)
     if always
         return Channel() do c
             while true
@@ -21,9 +20,8 @@ function gen1(always::Bool)
     end
 end
 
-function gen2(always::Bool)
-    # https://adventofcode.com/2017/day/15/input
-    v = 354
+# https://adventofcode.com/2017/day/15/input
+function gen2(; v::Int64 = 354, always::Bool = true)
     if always
         return Channel() do c
             while true
@@ -43,9 +41,9 @@ function gen2(always::Bool)
     end
 end
 
-function judge(always::Bool, upto::Int64)
+function judge(upto::Int64; always::Bool = true)
     total = 0
-    for (i, (g1, g2)) in enumerate(zip(gen1(always), gen2(always)))
+    for (i, (g1, g2)) in enumerate(zip(gen1(always=always), gen2(always=always)))
         if (g1 & 0xffff) == (g2 & 0xffff)
             total += 1
         end
@@ -56,5 +54,5 @@ function judge(always::Bool, upto::Int64)
     end
 end
 
-println(judge(true, 40000000))
-println(judge(false, 5000000))
+println(judge(40000000))
+println(judge(5000000, always=false))

@@ -11,7 +11,7 @@ function build_dict(data::Array)
 end
 
 # TODO: there has got to be a better way to do this
-function group(data::Dict, already::Set, val::Int64)
+function group(data::Dict, val::Int64; already::Set = Set())
     if val in already
         return Int64[]
     end
@@ -19,7 +19,7 @@ function group(data::Dict, already::Set, val::Int64)
 
     childs = Int64[]
     for k in data[val]
-        childs = vcat(childs, group(data, already, k))
+        childs = vcat(childs, group(data, k, already=already))
     end
     return unique(vcat(childs, data[val]))
 end
@@ -31,7 +31,7 @@ function groups(data::Dict)
         if i in seen
             continue
         end
-        g = group(data, Set(), i)
+        g = group(data, i)
         seen = sort(vcat(seen, g))
         groups += 1
     end
@@ -2043,5 +2043,5 @@ const data = [
 ]
 
 data_dict = build_dict(data)
-println(length(group(data_dict, Set(), 0)))
+println(length(group(data_dict, 0)))
 println(groups(data_dict))

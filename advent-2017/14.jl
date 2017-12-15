@@ -1,5 +1,5 @@
 # https://adventofcode.com/2017/day/14
-function hash(data::Array, lengths::Array, pos::Int64, skipper::Int64)
+function hash(data::Array, lengths::Array; pos::Int64 = 1, skipper::Int64 = 0)
     for l in lengths
         if pos + l <= length(data)
             idx = pos + l - 1
@@ -20,9 +20,9 @@ function hash(data::Array, lengths::Array, pos::Int64, skipper::Int64)
     pos, skipper
 end
 
-function knot_hash(data::Array, lengths::Array, pos::Int64, skipper::Int64)
+function knot_hash(data::Array, lengths::Array; pos::Int64 = 1, skipper::Int64 = 0)
     for _ in 1:64
-        pos, skipper = hash(data, lengths, pos, skipper)
+        pos, skipper = hash(data, lengths, pos=pos, skipper=skipper)
     end
     dense = [reduce(xor, data[i:i+15]) for i in 1:16:256]
     join([@sprintf("%02.x", i) for i in dense])
@@ -33,7 +33,7 @@ function knot_grid(data::String)
     for i in 0:127
         d = vcat([Int(c) for c in data], Int('-'), [Int(c) for c in string(i)],
                  [17, 31, 73, 47, 23])
-        knot = knot_hash(convert(Array, 0:255), d, 1, 0)
+        knot = knot_hash(convert(Array, 0:255), d)
         push!(grid, string(to_binary(knot)))
     end
     grid

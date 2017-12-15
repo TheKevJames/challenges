@@ -1,5 +1,5 @@
 # https://adventofcode.com/2017/day/10
-function hash(data::Array, lengths::Array, pos::Int64, skipper::Int64)
+function hash(data::Array, lengths::Array; pos::Int64 = 1, skipper::Int64 = 0)
     for l in lengths
         if pos + l <= length(data)
             idx = pos + l - 1
@@ -20,9 +20,9 @@ function hash(data::Array, lengths::Array, pos::Int64, skipper::Int64)
     pos, skipper
 end
 
-function knot_hash(data::Array, lengths::Array, pos::Int64, skipper::Int64)
+function knot_hash(data::Array, lengths::Array; pos::Int64 = 1, skipper::Int64 = 1)
     for _ in 1:64
-        pos, skipper = hash(data, lengths2, pos, skipper)
+        pos, skipper = hash(data, lengths2, pos=pos, skipper=skipper)
     end
     dense = [reduce(xor, data[i:i+15]) for i in 1:16:256]
     join([@sprintf("%02.x", i) for i in dense])
@@ -34,8 +34,8 @@ const salt = [17, 31, 73, 47, 23]
 
 lengths1 = [parse(Int, x) for x in split(lengths, ",")]
 data = convert(Array, 0:255)
-hash(data, lengths1, 1, 0)
+hash(data, lengths1)
 println(data[1] * data[2])
 
 lengths2 = vcat([Int(c) for c in lengths], salt)
-println(knot_hash(convert(Array, 0:255), lengths2, 1, 0))
+println(knot_hash(convert(Array, 0:255), lengths2))
