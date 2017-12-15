@@ -50,7 +50,7 @@ function get_spiral_value_greater_than(target::Integer)
     println("no answer found, increase m")
 end
 
-data = 265149
+const data = 265149
 
 println(get_distance(data))
 println(get_spiral_value_greater_than(data))

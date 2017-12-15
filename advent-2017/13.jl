@@ -61,7 +61,7 @@ function find_delay(data::Dict)
 end
 
 # https://adventofcode.com/2017/day/13/input
-data = [
+const data = [
     "0: 4",
     "1: 2",
     "2: 3",
@@ -106,7 +106,7 @@ data = [
     "84: 18",
     "88: 14",
 ]
-layers = parse(Int, split(data[end], ": ")[1])
+const layers = parse(Int, split(data[end], ": ")[1])
 
 println(get_severity(build_scanner(data), layers))
 println(find_delay(build_dict(data)))

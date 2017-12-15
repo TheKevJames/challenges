@@ -35,11 +35,11 @@ function reallocate(data::Array)
 end
 
 # https://adventofcode.com/2017/day/6/input
-data = [0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11]
+const data = [0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11]
 
 idx, state = reallocate(copy(data))
 println(idx)
 
-idx, state = reallocate(copy(data))
-idx, state = reallocate(copy(state))
+_, state = reallocate(copy(data))
+idx, _ = reallocate(copy(state))
 println(idx)

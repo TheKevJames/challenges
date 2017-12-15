@@ -29,8 +29,8 @@ function knot_hash(data::Array, lengths::Array, pos::Int64, skipper::Int64)
 end
 
 # https://adventofcode.com/2017/day/10/input
-lengths = "88,88,211,106,141,1,78,254,2,111,77,255,90,0,54,205"
-salt = [17, 31, 73, 47, 23]
+const lengths = "88,88,211,106,141,1,78,254,2,111,77,255,90,0,54,205"
+const salt = [17, 31, 73, 47, 23]
 
 lengths1 = [parse(Int, x) for x in split(lengths, ",")]
 data = convert(Array, 0:255)

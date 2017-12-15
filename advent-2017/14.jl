@@ -64,7 +64,7 @@ function region(grid::Array, i::Int64, j::Int64)
 end
 
 # https://adventofcode.com/2017/day/14/input
-data = "amgozmfv"
+const data = "amgozmfv"
 
 grid = knot_grid(data)
 println(sum([parse(Int, d) for line in grid for d in line]))

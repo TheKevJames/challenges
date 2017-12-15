@@ -11,7 +11,7 @@ function valid(data::String, f)
 end
 
 # https://adventofcode.com/2017/day/4/input
-data = [
+const data = [
     "oaoe rxeq vssdqtu xrk cjv yaoqp loo",
     "mveua dogbam szydvri hyzk lbega abzqw xwjn wniug kwbre",
     "npaoy uivpxwd oynpa rcdk uixpvdw",

@@ -31,7 +31,7 @@ function execute_program(datas::Array)
 end
 
 # https://adventofcode.com/2017/day/8/input
-data = [
+const data = [
     "uz inc 134 if hx > -10",
     "qin dec -300 if h <= 1",
     "ubi inc 720 if qin <= 306",

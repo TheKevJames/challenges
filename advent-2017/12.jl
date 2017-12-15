@@ -39,7 +39,7 @@ function groups(data::Dict)
 end
 
 # https://adventofcode.com/2017/day/12/input
-data = [
+const data = [
     "0 <-> 780, 1330",
     "1 <-> 264, 595, 1439",
     "2 <-> 296, 531, 1440",
@@ -2042,6 +2042,6 @@ data = [
     "1999 <-> 708",
 ]
 
-data = build_dict(data)
-println(length(group(data, Set(), 0)))
-println(groups(data))
+data_dict = build_dict(data)
+println(length(group(data_dict, Set(), 0)))
+println(groups(data_dict))

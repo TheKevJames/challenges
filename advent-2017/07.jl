@@ -83,7 +83,7 @@ function build_nodes(nodes::Array)
 end
 
 # https://adventofcode.com/2017/day/7/input
-data = [
+const data = [
     "vpryah (310) -> iedlpkf, epeain",
     "aqfemi (38)",
     "bwtsue (18) -> crdoq, lhxdfj",
