@@ -15,4 +15,5 @@ Because I, at least, like evaluating performance.
 .. code-block:: bash
 
     $ ./time.sh
-    Day 01.clj: 0.247
+    Day 01.clj: 0.261
+    Day 02.clj: 0.24
