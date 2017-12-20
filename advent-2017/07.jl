@@ -16,7 +16,7 @@ function real_weight(node::Node)
     total = sum(weights)
     if total != weights[1] * length(weights)
         counted = StatsBase.countmap(weights)
-        options = sort(collect(counted), by = x -> x[2], rev=true)
+        options = sort(collect(counted), by=x->x[2], rev=true)
         correct = options[1][1]
         wrong = options[2][1]
 
