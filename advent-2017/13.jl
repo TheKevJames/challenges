@@ -32,33 +32,16 @@ function tick(scanner::Dict, pos::Int64)
     pts
 end
 
-function get_severity(scanner::Dict, layers::Int64)
-    # TODO: reduce?
-    pts = 0
-    for pos in 0:layers
-        pts += tick(scanner, pos)
-    end
-    pts
-end
+tick(scanner::Dict) = (p) -> tick(scanner, p)
 
-function check_hit(data::Dict, delay::Int64)
-    # TODO: any?
-    for layer in data
-        if mod(delay + layer[1], 2 * layer[2] - 2) == 0
-            return false
-        end
-    end
-    true
-end
+get_severity(scanner::Dict, layers::Int64) = sum(map(tick(scanner), 0:layers))
 
-function find_delay(data::Dict)
-    # TODO: first?
-    for delay in Iterators.countfrom(0)
-        if check_hit(data, delay)
-            return delay
-        end
-    end
-end
+hit(k::Int, v::Int, delay::Int64) = mod(delay + k, 2 * v - 2) == 0
+
+avoided_hit(data::Dict, delay::Int64) = !any(hit(layer[1], layer[2], delay) for layer in data)
+avoided_hit(data::Dict) = (d) -> avoided_hit(data, d)
+
+find_delay(data::Dict) = Iterators.filter(avoided_hit(data), Iterators.countfrom(0)) |> first
 
 # https://adventofcode.com/2017/day/13/input
 const data = [

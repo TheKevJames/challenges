@@ -27,7 +27,7 @@ Because who doesn't like evaluating performance?
     Day 10.jl: 0.461104322
     Day 11.jl: 2.812469651
     Day 12.jl: 0.627527634
-    Day 13.jl: 6.026076098
+    Day 13.jl: 3.139892804
     Day 14.jl: 0.977556744
     Day 15.jl: 2.134842267
     Day 16.jl: 0.894263732
