@@ -1,58 +1,32 @@
 # https://adventofcode.com/2017/day/15
-# https://adventofcode.com/2017/day/15/input
-function gen1(; v::Int64 = 722, always::Bool = true)
+struct Generator
+    seed::Int64
+    mult::Int64
+    divisor::Int64
+end
+
+Base.start(g::Generator) = g.seed
+Base.next(g::Generator, state::Int64) = (state = (state * g.mult) % g.divisor; (state, state))
+Base.done(g::Generator, state::Int64) = false
+
+equal(lhs::Int64, rhs::Int64) = lhs & 0xffff == rhs & 0xffff
+mult_4(x) = xor(x, 0x3) & 0x3 == 0x3
+mult_8(x) = xor(x, 0x7) & 0x7 == 0x7
+
+function judge(seeds::Array, upto::Int64; always::Bool = true)
     if always
-        return Channel() do c
-            while true
-                v = (v * 16807) % 2147483647
-                push!(c, v)
-            end
-        end
+        lhs = Generator(seeds[1], 16807, 2147483647)
+        rhs = Generator(seeds[2], 48271, 2147483647)
+    else
+        lhs = Iterators.filter(mult_4, Generator(seeds[1], 16807, 2147483647))
+        rhs = Iterators.filter(mult_8, Generator(seeds[2], 48271, 2147483647))
     end
 
-    Channel() do c
-        while true
-            v = (v * 16807) % 2147483647
-            if mod(v, 4) == 0
-                push!(c, v)
-            end
-        end
-    end
+    reduce(+, 0, equal(l, r) for (l, r) in Iterators.take(zip(lhs, rhs), upto))
 end
 
 # https://adventofcode.com/2017/day/15/input
-function gen2(; v::Int64 = 354, always::Bool = true)
-    if always
-        return Channel() do c
-            while true
-                v = (v * 48271) % 2147483647
-                push!(c, v)
-            end
-        end
-    end
+const data = [722, 354]
 
-    Channel() do c
-        while true
-            v = (v * 48271) % 2147483647
-            if mod(v, 8) == 0
-                push!(c, v)
-            end
-        end
-    end
-end
-
-function judge(upto::Int64; always::Bool = true)
-    total = 0
-    for (i, (g1, g2)) in enumerate(zip(gen1(always=always), gen2(always=always)))
-        if (g1 & 0xffff) == (g2 & 0xffff)
-            total += 1
-        end
-
-        if i == upto
-            return total
-        end
-    end
-end
-
-println(judge(40000000))
-println(judge(5000000, always=false))
+println(judge(data, 40000000))
+println(judge(data, 5000000, always=false))
