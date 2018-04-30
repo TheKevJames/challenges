@@ -1,3 +1,2 @@
-requirements:
-  - polyeuler/requirements-dev.txt:
-      pin: False
+assignees: thekevjames
+update: all
