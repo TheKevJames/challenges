@@ -4,7 +4,7 @@ Advent of Code 2016
 These are my solutions to 2016's `Advent of Code`_, written in `Clojure`_
 because I want to brush up on my Clojure.
 
-.. _Advent of Code: http://adventofcode.com/2017
+.. _Advent of Code: http://adventofcode.com/2016
 .. _Clojure: https://clojure.org/
 
 Latest Timing Results
