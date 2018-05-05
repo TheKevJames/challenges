@@ -1,11 +1,12 @@
 repository:
   name: challenges
-  description: Various Coding Challenges
+  description: various coding challenges
   private: false
 
   has_issues: true
   has_projects: false
   has_wiki: false
+  has_downloads: false
 
   allow_merge_commit: false
   allow_rebase_merge: true
