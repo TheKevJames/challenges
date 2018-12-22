@@ -6,7 +6,7 @@ languages as possible.
 
 Inspired by `lgastako`_.
 
-.. _lgastanko: https://github.com/lgastako/polyeuler
+.. _lgastako: https://github.com/lgastako/polyeuler
 
 Latest Timing Results
 ---------------------
