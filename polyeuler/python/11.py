@@ -14,15 +14,18 @@ def fours(iterator):
     next(d, None)
     return zip(a, b, c, d)
 
+
 def horizontal(matrix):
     return max(functools.reduce(operator.mul, chunk)
                for row in matrix
                for chunk in fours(row))
 
+
 def vertical(matrix):
     return max(functools.reduce(operator.mul, chunk)
                for column in zip(*matrix)
                for chunk in fours(column))
+
 
 def bdiagonal(matrix):
     b = [None] * (len(matrix) - 1)
@@ -32,6 +35,7 @@ def bdiagonal(matrix):
                for diag in filtered
                for chunk in fours(diag))
 
+
 def fdiagonal(matrix):
     b = [None] * (len(matrix) - 1)
     diagonalized = [b[:i] + r + b[i:] for i, r in enumerate(matrix)]
@@ -39,6 +43,7 @@ def fdiagonal(matrix):
     return max(functools.reduce(operator.mul, chunk)
                for diag in filtered
                for chunk in fours(diag))
+
 
 grid = [
     [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
