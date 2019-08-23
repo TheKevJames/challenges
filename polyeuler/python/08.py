@@ -21,7 +21,7 @@ n = ('731671765313306249192251196744265747423553491949349698352031277450632623'
 i, j = 0, 13
 maximal_value, maximal_i = 0, 0
 while i < 1000 - 13:
-    current = functools.reduce(operator.mul, map(int, n[i:i+13]))
+    current = functools.reduce(operator.mul, map(int, n[i:i + 13]))
     if current > maximal_value:
         maximal_value = current
         maximal_i = i
