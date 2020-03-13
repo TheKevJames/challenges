@@ -14,30 +14,35 @@ parseAll(Data) ->
     Bin = binary:split(Data, [<<",">>], [global, trim_all]),
     [parse(X) || X <- Bin].
 
-travel([], M, {X,Y}) -> M;
-travel([H|T], M, {X,Y}) ->
+travel([], M, _S, {_X,_Y}) -> M;
+travel([H|T], M, S, {X,Y}) ->
+    Dist = element(2, H),
     case element(1, H) of
         'R' ->
-            Indexes = sets:from_list([{X+I,Y} || I <- lists:seq(1, element(2, H))]),
-            travel(T, sets:union(M, Indexes), {X+element(2, H), Y});
+            Indexes = dict:from_list([{{X+I,Y}, S+I} || I <- lists:seq(1, Dist)]),
+            travel(T, dict:merge(fun(_, V1, V2) -> min(V1, V2) end, M, Indexes), S + Dist, {X+Dist, Y});
         'L' ->
-            Indexes = sets:from_list([{X-I,Y} || I <- lists:seq(1, element(2, H))]),
-            travel(T, sets:union(M, Indexes), {X-element(2, H), Y});
+            Indexes = dict:from_list([{{X-I,Y}, S+I} || I <- lists:seq(1, Dist)]),
+            travel(T, dict:merge(fun(_, V1, V2) -> min(V1, V2) end, M, Indexes), S + Dist, {X-Dist, Y});
         'U' ->
-            Indexes = sets:from_list([{X,Y+I} || I <- lists:seq(1, element(2, H))]),
-            travel(T, sets:union(M, Indexes), {X, Y+element(2, H)});
+            Indexes = dict:from_list([{{X,Y+I}, S+I} || I <- lists:seq(1, Dist)]),
+            travel(T, dict:merge(fun(_, V1, V2) -> min(V1, V2) end, M, Indexes), S + Dist, {X, Y+Dist});
         'D' ->
-            Indexes = sets:from_list([{X,Y-I} || I <- lists:seq(1, element(2, H))]),
-            travel(T, sets:union(M, Indexes), {X, Y-element(2, H)})
+            Indexes = dict:from_list([{{X,Y-I}, S+I} || I <- lists:seq(1, Dist)]),
+            travel(T, dict:merge(fun(_, V1, V2) -> min(V1, V2) end, M, Indexes), S + Dist, {X, Y-Dist})
     end.
 
 part1(L) ->
-    [L0, L1] = [travel(X, sets:new(), {0,0}) || X <- L],
-    Inters = sets:intersection(L0, L1),
+    [L0, L1] = [travel(X, dict:new(), 0, {0,0}) || X <- L],
+    Inters = sets:intersection(sets:from_list(dict:fetch_keys(L0)), sets:from_list(dict:fetch_keys(L1))),
     Sorted = lists:usort([abs(X) + abs(Y) || {X,Y} <- sets:to_list(Inters)]),
     lists:nth(1, Sorted).
 
-part2(_L) -> 0.
+part2(L) ->
+    [L0, L1] = [travel(X, dict:new(), 0, {0,0}) || X <- L],
+    Inters = sets:intersection(sets:from_list(dict:fetch_keys(L0)), sets:from_list(dict:fetch_keys(L1))),
+    Sorted = lists:usort([dict:fetch({X,Y}, L0) + dict:fetch({X,Y}, L1) || {X,Y} <- sets:to_list(Inters)]),
+    lists:nth(1, Sorted).
 
 main() ->
     L = readlines("in03"),

@@ -9,10 +9,7 @@ Dev
 ::
 
     # compile loop
-    while sleep 1; do
-        fd .erl \
-            | entr -d bash -x -c 'erlc -Wall $0' /_;
-    done
+    while sleep 1; do fd .erl | entr -d make; done
 
     # run loop
     while sleep 1; do
