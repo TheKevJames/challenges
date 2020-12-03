@@ -5,7 +5,7 @@ FLAGS := -d:release --opt:speed
 INPUTS := $(shell seq -f 'in%02g' 1 1 25)
 BINS := $(patsubst %.nim,./%,$(wildcard *.nim))
 
-all: perf.md
+all: README.rst
 
 inputs: $(INPUTS)
 $(INPUTS):
@@ -14,6 +14,14 @@ $(INPUTS):
 bins: $(BINS)
 %: %.nim
 	nim c $(FLAGS) $<
+
+README.rst: README.src perf.rst
+	cp $< $@
+	echo '' >>$@
+	cat $(word 2,$^) >>$@
+
+perf.rst: perf.md
+	pandoc -trst $< >$@
 
 perf.md: $(BINS) $(INPUTS)
 	hyperfine -w3 $(BINS) --export-markdown $@

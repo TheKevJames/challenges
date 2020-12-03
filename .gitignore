@@ -1,3 +1,9 @@
+# extensionless build files
+**/d*
+!**/d*.*
+
 **/*.beam
 **/*.pyc
 **/erl_crash.dump
+
+**/perf.*
