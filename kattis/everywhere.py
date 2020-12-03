@@ -3,7 +3,7 @@ def main(n, *cases):
     values = []
     for _ in range(int(n)):
         x = int(cases[0])
-        values.append(len({c for c in cases[1:x + 1]}))
+        values.append(len(set(cases[1:x + 1])))
         cases = cases[x + 1:]
     return '\n'.join(str(x) for x in values)
 
