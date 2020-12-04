@@ -14,7 +14,8 @@ proc part2(xs: seq[string]): int =
   for x in xs:
     var fields = split(x, ' ')
     var rangeFields = fields[0].split('-')
-    if fields[2][parseInt(rangeFields[0])-1] == fields[1][0] xor fields[2][parseInt(rangeFields[1])-1] == fields[1][0]:
+    if (fields[2][parseInt(rangeFields[0])-1] == fields[1][0] xor
+        fields[2][parseInt(rangeFields[1])-1] == fields[1][0]):
       result += 1
 
 let f = strip(readFile("in02")).splitLines()

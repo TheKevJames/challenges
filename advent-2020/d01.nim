@@ -8,7 +8,7 @@ proc part1(xs: seq[int], target = 2020): int =
 
 proc part2(xs: seq[int]): int =
   for i, x in xs:
-    var res = part1(xs[i .. high(xs)], target=2020-x)
+    let res = part1(xs[i .. high(xs)], target=2020-x)
     if res != 0:
       return x * res
 
