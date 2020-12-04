@@ -2,7 +2,8 @@ SESSION = "53616c7465645f5fb0d356f1d4662e56aeea1ed683840d1ab968b2eeac57df8f97125
 
 FLAGS := -d:release --opt:speed
 
-INPUTS := $(shell seq -f 'in%02g' 1 1 3)
+INPUTS := $(shell seq -f 'in%02g' 1 1 4)
+# TODO: sort
 BINS := $(patsubst %.nim,./%,$(wildcard *.nim))
 
 all: README.rst
