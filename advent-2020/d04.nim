@@ -1,24 +1,23 @@
-import parseutils
 import sequtils
 import sets
 import strutils
 import tables
 
-# TODO: why on earth am I on nim v0.17? Upgrade, then use toHashSet!
-let targetKeys = toSet(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
-let targetEyes = toSet(["amb", "blu", "brn", "gry", "grn", "hzl", "oth"])
+let targetKeys = toHashSet(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
+let targetEyes = toHashSet(["amb", "blu", "brn", "gry", "grn", "hzl", "oth"])
 
 iterator passports(xs: seq[string]): seq[string] =
   var passport: seq[string] = @[]
   for line in xs:
-    if line == "":
+    if line.len == 0:
       yield passport
       passport = @[]
+      continue
     passport &= split(line, ' ')
   yield passport
 
 proc check(xs: seq[string]): bool =
-  let keys = toSet(map(xs, proc(x: string): string = split(x, ':')[0]))
+  let keys = toHashSet(map(xs, proc(x: string): string = split(x, ':')[0]))
   keys.intersection(targetKeys) == targetKeys
 
 proc toPair(x: string): tuple[k,v: string] =
