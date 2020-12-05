@@ -21,27 +21,18 @@ proc check(xs: seq[string]): bool =
   keys.intersection(targetKeys) == targetKeys
 
 proc toPair(x: string): tuple[k,v: string] =
-  # TODO: splat?
-  result.k = split(x, ':')[0]
-  result.v = split(x, ':')[1]
+  (result.k, result.v) = split(x, ':')
 
 proc valid(xs: seq[string]): bool =
   let d = toTable(map(xs, proc(x: string): tuple[k,v: string] = toPair(x)))
-  # TODO: there's gotta be a nicer "check numeric" builtin than:
-  #   all(toSeq(d["pid"].items), isDigit)
   try:
     let byr = parseInt(d["byr"])
     let eyr = parseInt(d["eyr"])
     let hgt = parseInt(d["hgt"][0 .. high(d["hgt"]) - 2])
     let iyr = parseInt(d["iyr"])
 
-    var validHgt: bool
-    if d["hgt"].endsWith("cm"):
-      validHgt = (150 <= hgt and hgt <= 193)
-    elif d["hgt"].endswith("in"):
-      validHgt = (59 <= hgt and hgt <= 76)
-    else:
-      validHgt = false
+    let validHgt = (d["hgt"].endsWith("cm") and (150 <= hgt and hgt <= 193) or
+                    d["hgt"].endswith("in") and (59 <= hgt and hgt <= 76))
 
     (1920 <= byr and byr <= 2002 and
      2010 <= iyr and iyr <= 2020 and
@@ -49,7 +40,7 @@ proc valid(xs: seq[string]): bool =
      validHgt and
      d["hcl"].len == 7 and d["hcl"][0] == '#' and parseHexInt(d["hcl"]) > -1 and
      targetEyes.contains(d["ecl"]) and
-     d["pid"].len == 9 and parseInt(d["pid"]) > -1)
+     d["pid"].len == 9 and all(d["pid"], isDigit))
   except ValueError:
     false
 
