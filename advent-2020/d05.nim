@@ -2,9 +2,7 @@ import sequtils
 import strutils
 
 proc toSeat(xs: string): int =
-  let row = fromBin[int](xs[0 .. 6].replace('B', '1').replace('F', '0'))
-  let col = fromBin[int](xs[7 .. 9].replace('R', '1').replace('L', '0'))
-  row * 8 + col
+  fromBin[int](xs.multiReplace(("B", "1"), ("R", "1"), ("F", "0"), ("L", "0")))
 
 proc part1(xs: seq[string]): int =
   let seats = map(xs, toSeat)
