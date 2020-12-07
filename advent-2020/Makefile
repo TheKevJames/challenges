@@ -1,6 +1,6 @@
 SESSION = "53616c7465645f5fb0d356f1d4662e56aeea1ed683840d1ab968b2eeac57df8f97125e6000644cc864d3dafb97b7a80b"
 
-FLAGS := -d:release --opt:speed
+FLAGS := -d:danger -d:release --opt:speed
 
 INPUTS := $(shell seq -f 'in%02g' 1 1 7)
 BINS := $(sort $(patsubst %.nim,./%,$(wildcard *.nim)))

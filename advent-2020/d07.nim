@@ -1,51 +1,51 @@
 import sequtils
 import sets
+import strscans
 import strutils
 import tables
 
 type Item = tuple[item: string, count: int]
-type Rules = Table[string, seq[Item]]
+type Rules = Table[string, seq[Item]]  # parent -> children
+type InvRules = Table[string, HashSet[string]]  # child -> parents
 
 proc toPair(x: string): tuple[k,v: string] =
-  (result.k, result.v) = split(x, " contain ")
+  discard scanf(x, "$+ contain $+", result.k, result.v)
 
 proc parseKey(x: string): string =
-  split(x, " bag")[0]
+  discard scanf(x, "$* bag", result)
 
 proc parseItem(x: string): Item =
   var count, item: string
-  (count, item) = split(x, " ", 1)
+  discard scanf(x, "$* $*", count, item)
   result.count = parseInt(count.replace("no", "0"))
   result.item = parseKey(item)
 
 proc getRules(xs: seq[string]): Rules =
   for x in xs:
     let (key, tail) = toPair(x)
-    let values = split(tail, ", ")
-    result[parseKey(key)] = map(values, parseItem)
+    result[parseKey(key)] = map(split(tail, ", "), parseItem)
 
-iterator getParents(rules: Rules, child: string): string =
-  for k, v in rules.pairs:
-    if child in map(v, proc(x: Item): string = x.item):
-      yield k
+proc getInvRules(xs: seq[string]): InvRules =
+  for x in xs:
+    let (key, tail) = toPair(x)
+    for v in map(split(tail, ", "), parseItem):
+      incl(mgetOrPut(result, v.item, initHashSet[string]()), parseKey(key))
 
-# TODO: clean this up with foldl magic
-proc uniqueParents(rules: Rules, child: string,
-                   seen: HashSet[string] = initHashSet[string]()): seq[string] =
-  let parents = toHashSet(toSeq(getParents(rules, child)))
-  for parent in (parents - seen):
-    # TODO: some sort of += equivalent? This'd be great as a few yields, but
-    # Nim doesn't support recursive iterators :(
-    result = concat(result, @[parent], uniqueParents(rules, parent, seen + parents))
-
-proc part1(xs: seq[string]): int =
-  uniqueParents(getRules(xs), "shiny gold").len
+proc uniqueParents(rules: InvRules, child: string,
+                   seen: HashSet[string] = initHashSet[string]()): HashSet[string] =
+  let parents = getOrDefault(rules, child) - seen
+  # TODO: two problems here:
+  # * not backpropogating the `seen` values, so processing the same things multiple times
+  # * HashSet[string] operations seem to be slow as fuck?
+  foldl(parents, a + uniqueParents(rules, b, a + seen + parents), parents)
 
 proc countChildren(rules: Rules, parent: string): int =
   for child in rules[parent]:
     if child.count > 0:
-      result += child.count
-      result += child.count * countChildren(rules, child.item)
+      result += (1 + countChildren(rules, child.item)) * child.count
+
+proc part1(xs: seq[string]): int =
+  uniqueParents(getInvRules(xs), "shiny gold").len
 
 proc part2(xs: seq[string]): int =
   countChildren(getRules(xs), "shiny gold")
