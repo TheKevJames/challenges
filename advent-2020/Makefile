@@ -2,7 +2,7 @@ SESSION = "53616c7465645f5fb0d356f1d4662e56aeea1ed683840d1ab968b2eeac57df8f97125
 
 FLAGS := -d:danger -d:release --opt:speed
 
-INPUTS := $(shell seq -f 'in%02g' 1 1 7)
+INPUTS := $(shell seq -f 'in%02g' 1 1 8)
 BINS := $(sort $(patsubst %.nim,./%,$(wildcard *.nim)))
 
 all: README.rst
