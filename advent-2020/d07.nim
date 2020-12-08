@@ -32,12 +32,10 @@ proc getInvRules(xs: seq[string]): InvRules =
       incl(mgetOrPut(result, v.item, initHashSet[string]()), parseKey(key))
 
 proc uniqueParents(rules: InvRules, child: string,
-                   seen: HashSet[string] = initHashSet[string]()): HashSet[string] =
+                   seen: var HashSet[string]): HashSet[string] =
   let parents = getOrDefault(rules, child) - seen
-  # TODO: two problems here:
-  # * not backpropogating the `seen` values, so processing the same things multiple times
-  # * HashSet[string] operations seem to be slow as fuck?
-  foldl(parents, a + uniqueParents(rules, b, a + seen + parents), parents)
+  incl(seen, parents)
+  foldl(parents, a + uniqueParents(rules, b, seen), parents)
 
 proc countChildren(rules: Rules, parent: string): int =
   for child in rules[parent]:
@@ -45,7 +43,8 @@ proc countChildren(rules: Rules, parent: string): int =
       result += (1 + countChildren(rules, child.item)) * child.count
 
 proc part1(xs: seq[string]): int =
-  uniqueParents(getInvRules(xs), "shiny gold").len
+  var seen = initHashSet[string]()
+  uniqueParents(getInvRules(xs), "shiny gold", seen).len
 
 proc part2(xs: seq[string]): int =
   countChildren(getRules(xs), "shiny gold")
