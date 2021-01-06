@@ -26,7 +26,7 @@ iterator invalidFields(rules: Table[string, tuple[a,b,c,d: int]], ticket: seq[in
       if (rule.a <= field and field <= rule.b) or (rule.c <= field and field <= rule.d):
         valid = true
         break
-     
+
     if not valid:
       yield field
 
@@ -53,7 +53,7 @@ proc solve(rules: Table[string, tuple[a,b,c,d: int]], tickets: seq[seq[int]]): s
         known[i] = cands.pop
       else:
         cands.excl(toHashSet(known))
-  
+
   known
 
 proc part1(xs: seq[string]): int =

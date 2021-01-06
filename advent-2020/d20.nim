@@ -106,7 +106,7 @@ proc findOrientation(x, y: Tile, direction: Direction): (int, Flip) =
       return (findRotation(direction, dir), flip)
     if yBorder == xBorderRev:
       return (findRotation(direction, dir), None)
-  
+
   (-1, None)
 
 proc opposite(d: Direction): Direction =
@@ -225,7 +225,7 @@ proc countMonsters(sea: seq[string]): int =
     if count != 0:
       return count
     viewport = rotate(viewport)
-    
+
   viewport = map(viewport, reversed)
   for _ in 0 ..< 4:
     let count = countMatches(viewport, patterns)
@@ -245,7 +245,7 @@ proc part2(xs: seq[string]): int =
   # actually build the damn thingj
   let image = layoutImage(tilemap, tiles.findMatches, topleft)
 
-  # find the monsters  
+  # find the monsters
   let sea = render(image, tilemap, topleft)
   let monsters = countMonsters(sea)
   foldl(sea, a + count(b, '#'), 0) - monsters * 15

@@ -11,7 +11,7 @@ proc parse(x: string, precedence: bool): int =
     of '+': vals.add(vals.pop + vals.pop)
     of '*': vals.add(vals.pop * vals.pop)
     else: discard
-  
+
   for c in x:
     case c
     of ' ': discard

@@ -21,7 +21,7 @@ proc play(xs: seq[string], turns: int): int =
       record[last] = turn
       last = turn - idx
     turn += 1
-  
+
   last
 
 proc part1(xs: seq[string]): int =

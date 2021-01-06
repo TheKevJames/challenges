@@ -9,7 +9,7 @@ proc part1(xs: seq[string]): int =
   var maskAnd, maskOr: int
   var key, val: int
   var data = initTable[int, int]()
-  
+
   for x in xs:
     if scanf(x, "mask = $+", mask):
       maskAnd = fromBin[int](mask.replace('X', '1'))
@@ -34,7 +34,7 @@ proc part2(xs: seq[string]): int =
   var maskOr: int
   var key, val: int
   var data = initTable[int, int]()
-  
+
   for x in xs:
     if scanf(x, "mask = $+", mask):
       maskOr = fromBin[int](mask.replace('X', '0'))
