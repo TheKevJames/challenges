@@ -1,0 +1,12 @@
+Advent of Code 2021
+===================
+
+These are my solutions to 2021's `Advent of Code`_, written in `Nim`_ since I
+didn't get around to properly finishing in 2018 or 2020! Currently taking bets
+on whether the third time is the charm.
+
+Since I'm committing these files in January without all the days completed, my
+guess is "no".
+
+.. _Advent of Code: http://adventofcode.com/2021
+.. _Nim: https://nim-lang.org/

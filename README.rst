@@ -8,6 +8,7 @@ This repository is a collection of various one-off challenges.
 - `Advent of Code 2018`_
 - `Advent of Code 2019`_
 - `Advent of Code 2020`_
+- `Advent of Code 2021`_
 - `Kattis`_
 - `PolyEuler`_
 
@@ -16,5 +17,6 @@ This repository is a collection of various one-off challenges.
 .. _Advent of Code 2018: https://github.com/TheKevJames/challenges/tree/master/advent-2018
 .. _Advent of Code 2019: https://github.com/TheKevJames/challenges/tree/master/advent-2019
 .. _Advent of Code 2020: https://github.com/TheKevJames/challenges/tree/master/advent-2020
+.. _Advent of Code 2021: https://github.com/TheKevJames/challenges/tree/master/advent-2021
 .. _Kattis: https://github.com/TheKevJames/challenges/tree/master/kattis
 .. _PolyEuler: https://github.com/TheKevJames/challenges/tree/master/polyeuler
