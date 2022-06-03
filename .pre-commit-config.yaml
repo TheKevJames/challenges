@@ -32,7 +32,7 @@ repos:
     -   id: name-tests-test
     -   id: requirements-txt-fixer
 -   repo: https://github.com/pycqa/pylint
-    rev: v2.14.0-b1
+    rev: v2.13.9
     hooks:
     -   id: pylint
         additional_dependencies:
@@ -71,7 +71,7 @@ repos:
     rev: v2.32.1
     hooks:
     -   id: pyupgrade
-        args: [--py36-plus]
+        args: [--py37-plus]
 -   repo: https://github.com/asottile/yesqa
     rev: v1.3.0
     hooks:
@@ -91,12 +91,11 @@ repos:
     hooks:
     -   id: flake8
         additional_dependencies:
-        - flake8-2020==1.6.0
-        - flake8-broken-line==0.3.0
+        - flake8-2020==1.6.1
+        - flake8-broken-line==0.4.0
         - flake8-builtins==1.5.3
-        - flake8-commas==2.0.0
-        - flake8-comprehensions==3.3.0
-        # - flake8-walrus==1.1.0  # TODO: Py3.8 only
+        - flake8-commas==2.1.0
+        - flake8-comprehensions==3.10.0
         args:
         - --ignore=E501,W503,F401,E741,F811
 -   repo: local
