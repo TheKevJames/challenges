@@ -35,7 +35,7 @@ repos:
     -   id: name-tests-test
     -   id: requirements-txt-fixer
 -   repo: https://github.com/pycqa/pylint
-    rev: v2.16.0b1
+    rev: v2.16.2
     hooks:
     -   id: pylint
         additional_dependencies:
@@ -139,7 +139,7 @@ repos:
 
 # terraform
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.77.0
+    rev: v1.77.1
     hooks:
     -   id: terraform_fmt
     -   id: terraform_validate
