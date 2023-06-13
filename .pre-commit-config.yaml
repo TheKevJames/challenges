@@ -35,7 +35,7 @@ repos:
     -   id: name-tests-test
     -   id: requirements-txt-fixer
 -   repo: https://github.com/PyCQA/pylint
-    rev: v2.17.2
+    rev: v3.0.0a6
     hooks:
     -   id: pylint
         additional_dependencies:
@@ -65,18 +65,18 @@ repos:
     hooks:
     -   id: remove-crlf
     -   id: remove-tabs
--   repo: https://github.com/asottile/reorder_python_imports
+-   repo: https://github.com/asottile/reorder-python-imports
     rev: v3.9.0
     hooks:
     -   id: reorder-python-imports
         args: [--py311-plus]
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.3.2
+    rev: v3.6.0
     hooks:
     -   id: pyupgrade
         args: [--py311-plus]
 -   repo: https://github.com/asottile/yesqa
-    rev: v1.4.0
+    rev: v1.5.0
     hooks:
     -   id: yesqa
         # N.B. keep these in sync with flake8, otherwise yesqa will remove
@@ -143,7 +143,7 @@ repos:
 
 # json
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0.22.0
+  rev: 0.23.1
   hooks:
     - id: check-github-workflows
     - id: check-renovate
