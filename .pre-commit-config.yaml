@@ -42,7 +42,8 @@ repos:
         - pylint-import-modules==0.3.0
         args:
         - --allowed-direct-imports="typing.*"
-        - --load-plugins=pylint_import_modules
+        - --load-plugins=pylint_import_modules,pylint.extensions.mccabe
+        - --max-complexity=10
         - --max-line-length=109
         - --max-args=10
         - --score=n
@@ -65,28 +66,28 @@ repos:
     hooks:
     -   id: remove-crlf
     -   id: remove-tabs
--   repo: https://github.com/asottile/reorder_python_imports
+-   repo: https://github.com/asottile/reorder-python-imports
     rev: v3.9.0
     hooks:
     -   id: reorder-python-imports
         args: [--py311-plus]
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.3.2
+    rev: v3.6.0
     hooks:
     -   id: pyupgrade
         args: [--py311-plus]
 -   repo: https://github.com/asottile/yesqa
-    rev: v1.4.0
+    rev: v1.5.0
     hooks:
     -   id: yesqa
         # N.B. keep these in sync with flake8, otherwise yesqa will remove
         # required noqa's related to these plugins
         additional_dependencies: &flake8deps
-        - flake8-2020==1.7.0
-        # - flake8-broken-line==0.5.0  # TODO: flake6 support
-        - flake8-builtins==1.5.3
+        - flake8-2020==1.8.1
+        - flake8-broken-line==1.0.0
+        - flake8-builtins==2.1.0
         - flake8-commas==2.1.0
-        - flake8-comprehensions==3.10.0
+        - flake8-comprehensions==3.13.0
 -   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v2.0.2
     hooks:
@@ -104,7 +105,10 @@ repos:
     -   id: flake8
         additional_dependencies: *flake8deps
         args:
-        - --ignore=E501,E741,F401,F811,W503
+        # https://www.flake8rules.com/
+        # E501: Line too long. Covered by autopep8.
+        # E741: Do not use variables named 'I', 'O', or 'l'.
+        - --ignore=E501,E741
 -   repo: local
     hooks:
     -   id: poetry-check
@@ -143,7 +147,7 @@ repos:
 
 # json
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0.22.0
+  rev: 0.23.2
   hooks:
     - id: check-github-workflows
     - id: check-renovate
