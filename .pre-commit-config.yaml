@@ -35,7 +35,7 @@ repos:
     -   id: name-tests-test
     -   id: requirements-txt-fixer
 -   repo: https://github.com/pylint-dev/pylint
-    rev: v2.17.4
+    rev: v3.0.0a6
     hooks:
     -   id: pylint
         additional_dependencies:
@@ -72,7 +72,7 @@ repos:
     -   id: reorder-python-imports
         args: [--py311-plus]
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.7.0
+    rev: v3.9.0
     hooks:
     -   id: pyupgrade
         args: [--py311-plus]
