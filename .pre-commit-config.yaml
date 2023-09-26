@@ -64,12 +64,12 @@ repos:
     -   id: remove-crlf
     -   id: remove-tabs
 -   repo: https://github.com/asottile/reorder-python-imports
-    rev: v3.10.0
+    rev: v3.11.0
     hooks:
     -   id: reorder-python-imports
         args: [--py311-plus]
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.10.1
+    rev: v3.13.0
     hooks:
     -   id: pyupgrade
         args: [--py311-plus]
@@ -85,7 +85,7 @@ repos:
         - flake8-builtins==2.1.0
         - flake8-commas==2.1.0
         - flake8-comprehensions==3.13.0
--   repo: https://github.com/pre-commit/mirrors-autopep8
+-   repo: https://github.com/hhatto/autopep8
     rev: v2.0.4
     hooks:
     -   id: autopep8
