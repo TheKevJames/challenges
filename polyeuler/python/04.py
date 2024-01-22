@@ -9,6 +9,6 @@ for i in range(1000, 100, -1):
     for j in range(i, 100, -1):
         prod = i * j
         if is_palindrome(prod):
-            highest = prod if prod > highest else highest
+            highest = max(highest, prod)
 
 print(highest)

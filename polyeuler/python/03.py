@@ -7,4 +7,4 @@ while i * i < n:
 
     i += 1
 
-print(int(n))
+print(n)

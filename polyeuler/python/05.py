@@ -6,4 +6,4 @@ while r:
     s *= r[0]
     r = [x if x % r[0] else x / r[0] for x in r[1:]]
 
-print(int(s))
+print(s)
