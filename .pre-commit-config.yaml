@@ -243,7 +243,7 @@ repos:
 #     rev: v0.10.0.1
 #     hooks:
 #       - id: shellcheck
-#   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-#     rev: 3.0.0
-#     hooks:
-#       - id: script-must-not-have-extension
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: script-must-not-have-extension

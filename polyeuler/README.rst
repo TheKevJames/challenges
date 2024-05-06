@@ -15,7 +15,7 @@ Because who doesn't like evaluating performance?
 
 .. code-block:: bash
 
-    $ ./times.sh
+    $ ./time
     > c++
     Problem 01.cpp: 0.001245289
     Problem 02.cpp: 0.001019480

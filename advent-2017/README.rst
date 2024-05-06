@@ -14,7 +14,7 @@ Because who doesn't like evaluating performance?
 
 .. code-block:: bash
 
-    $ ./time.sh
+    $ ./time
     Day 01.jl: 0.253681732
     Day 02.jl: 0.627934821
     Day 03.jl: 0.352555428

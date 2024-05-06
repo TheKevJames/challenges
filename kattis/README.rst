@@ -14,7 +14,7 @@ problems?
 
 .. code-block:: bash
 
-    $ ./time.sh
+    $ ./time
     Problem batterup: 4.2 usec per loop
     Problem bijele: 2.84 usec per loop
     Problem cold: 2.82 usec per loop
