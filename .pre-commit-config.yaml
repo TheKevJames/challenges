@@ -229,10 +229,6 @@ repos:
       - id: terraform_validate
 
 # shell
-  - repo: https://github.com/lovesegfault/beautysh
-    rev: v6.2.1
-    hooks:
-      - id: beautysh
   - repo: https://github.com/openstack/bashate
     rev: 2.1.1
     hooks:
