@@ -8,7 +8,7 @@ default_install_hook_types:
   - pre-commit
 
 default_language_version:
-    python: python3.11
+    python: python3.12
 
 repos:
   - repo: https://github.com/compilerla/conventional-pre-commit
@@ -116,7 +116,7 @@ repos:
     rev: v2.1.0
     hooks:
       - id: autopep8
-        args: [-a, -i, -p2]
+        args: [-a, -i, -p2, --max-line-length=109]
   - repo: https://github.com/PyCQA/pydocstyle
     rev: 6.3.0
     hooks:
