@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-for file in $(ls *.nim); do
+for file in *.nim; do
     echo -n "Day ${file}: "
 
     nim c -d:release "${file}" 2>/dev/null

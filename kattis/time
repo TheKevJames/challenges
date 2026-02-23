@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-for file in $(ls *.py); do
+for file in *.py; do
     echo -n "Problem ${file/.py/}: "
 
     # realtime, but only once

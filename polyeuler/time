@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-for folder in $(ls -d */); do
+for folder in */; do
     echo "> ${folder::-1}"
     pushd "${folder}"
     ./time
