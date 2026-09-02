@@ -11,9 +11,10 @@ def split_cases(l):
 
 
 def main(_, *x):
-    return '\n'.join(' '.join(word for word in case[0].split()
-                              if word not in {l.split()[2] for l in case[1:]})
-                     for case in split_cases(x))
+    return '\n'.join(
+        ' '.join(word for word in case[0].split() if word not in {l.split()[2] for l in case[1:]})
+        for case in split_cases(x)
+    )
 
 
 if __name__ == '__main__':
