@@ -47,7 +47,7 @@ repos:
       - id: check-docstring-first
       - id: name-tests-test
   - repo: https://github.com/PyCQA/pylint
-    rev: v4.0.8
+    rev: v4.0.9
     hooks:
       - id: pylint
         args:
@@ -90,7 +90,7 @@ repos:
           # IMR200: Imports should only happen on module level, not locally. Covered by pylint.
           - --select=FCW,I90,IMR,N400
           - --ignore=IMR200
-          - --imr241_exclude=collections.abc,typing
+          - --imr241_exclude=__future__,collections.abc,typing
   # TODO: use ruff once more refurb rules are out of preview
   - repo: https://github.com/dosisod/refurb
     rev: v2.3.1
@@ -111,7 +111,7 @@ repos:
           - --target-version
           - py311
           - --select
-          - A,C4,C901,D,E,F,G010,I,PYI,RUF006,RUF100,S307,T10,TRY,UP,W,YTT
+          - A,ANN,C4,C901,D,E,F,G010,I,PYI,RUF006,RUF100,S307,T10,TRY,UP,W,YTT
           - --preview
           - --config
           - lint.mccabe.max-complexity = 10
@@ -172,7 +172,7 @@ repos:
 
 # json
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.38.0
+    rev: 0.38.2
     hooks:
       - id: check-circle-ci
       - id: check-github-workflows
